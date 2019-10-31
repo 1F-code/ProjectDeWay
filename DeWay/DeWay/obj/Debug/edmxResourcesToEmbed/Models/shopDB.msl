@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="shopDBModelStoreContainer" CdmEntityContainer="shopDBEntities">
+  <EntityContainerMapping StorageEntityContainer="shopDBModelStoreContainer" CdmEntityContainer="shopDBEntities1">
     <EntitySetMapping Name="actBulletin">
       <EntityTypeMapping TypeName="shopDBModel.actBulletin">
         <MappingFragment StoreEntitySet="actBulletin">
@@ -44,6 +44,15 @@
           <ScalarProperty Name="Discount" ColumnName="Discount" />
           <ScalarProperty Name="usedPoints" ColumnName="usedPoints" />
           <ScalarProperty Name="shpID" ColumnName="shpID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FavoSeller">
+      <EntityTypeMapping TypeName="shopDBModel.FavoSeller">
+        <MappingFragment StoreEntitySet="FavoSeller">
+          <ScalarProperty Name="selID" ColumnName="selID" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+          <ScalarProperty Name="favoID" ColumnName="favoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -339,21 +348,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="FavoSeller" TypeName="shopDBModel.FavoSeller" StoreEntitySet="FavoSeller">
-      <EndProperty Name="Member">
-        <ScalarProperty Name="mbrID" ColumnName="mbrID" />
-      </EndProperty>
-      <EndProperty Name="Seller">
-        <ScalarProperty Name="selID" ColumnName="selID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="WishList" TypeName="shopDBModel.WishList" StoreEntitySet="WishList">
-      <EndProperty Name="Member">
-        <ScalarProperty Name="mbrID" ColumnName="mbrID" />
-      </EndProperty>
-      <EndProperty Name="Product">
-        <ScalarProperty Name="pdtID" ColumnName="pdtID" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="WishList">
+      <EntityTypeMapping TypeName="shopDBModel.WishList">
+        <MappingFragment StoreEntitySet="WishList">
+          <ScalarProperty Name="wishID" ColumnName="wishID" />
+          <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+          <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

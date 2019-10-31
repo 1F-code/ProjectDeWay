@@ -44,11 +44,11 @@
   </EntityType>
   <EntityType Name="FavoSeller">
     <Key>
-      <PropertyRef Name="selID" />
-      <PropertyRef Name="mbrID" />
+      <PropertyRef Name="favoID" />
     </Key>
     <Property Name="selID" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="mbrID" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="favoID" Type="char" MaxLength="10" Nullable="false" />
   </EntityType>
   <EntityType Name="FirstLayer">
     <Key>
@@ -320,9 +320,9 @@
   </EntityType>
   <EntityType Name="WishList">
     <Key>
-      <PropertyRef Name="pdtID" />
-      <PropertyRef Name="mbrID" />
+      <PropertyRef Name="wishID" />
     </Key>
+    <Property Name="wishID" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="pdtID" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="mbrID" Type="char" MaxLength="10" Nullable="false" />
   </EntityType>

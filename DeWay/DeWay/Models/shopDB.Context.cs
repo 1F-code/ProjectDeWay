@@ -13,10 +13,10 @@ namespace DeWay.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class shopDBEntities1 : DbContext
+    public partial class shopDBEntities : DbContext
     {
-        public shopDBEntities1()
-            : base("name=shopDBEntities1")
+        public shopDBEntities()
+            : base("name=shopDBEntities")
         {
         }
     
