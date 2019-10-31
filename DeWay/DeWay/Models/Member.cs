@@ -18,13 +18,13 @@ namespace DeWay.Models
         public Member()
         {
             this.Cart_OrderDetail = new HashSet<Cart_OrderDetail>();
+            this.FavoSeller = new HashSet<FavoSeller>();
             this.Message = new HashSet<Message>();
             this.Message1 = new HashSet<Message>();
             this.ntfRecord = new HashSet<ntfRecord>();
             this.Review = new HashSet<Review>();
             this.Seller = new HashSet<Seller>();
-            this.Seller1 = new HashSet<Seller>();
-            this.Product = new HashSet<Product>();
+            this.WishList = new HashSet<WishList>();
         }
     
         public string mbrID { get; set; }
@@ -40,6 +40,8 @@ namespace DeWay.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart_OrderDetail> Cart_OrderDetail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FavoSeller> FavoSeller { get; set; }
         public virtual MemberAccount MemberAccount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Message> Message { get; set; }
@@ -52,8 +54,6 @@ namespace DeWay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Seller> Seller { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Seller> Seller1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual ICollection<WishList> WishList { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace DeWay.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class shopDBEntities : DbContext
+    public partial class shopDBEntities1 : DbContext
     {
-        public shopDBEntities()
-            : base("name=shopDBEntities")
+        public shopDBEntities1()
+            : base("name=shopDBEntities1")
         {
         }
     
@@ -29,6 +29,7 @@ namespace DeWay.Models
         public virtual DbSet<Adm> Adm { get; set; }
         public virtual DbSet<AdmAccount> AdmAccount { get; set; }
         public virtual DbSet<Cart_OrderDetail> Cart_OrderDetail { get; set; }
+        public virtual DbSet<FavoSeller> FavoSeller { get; set; }
         public virtual DbSet<FirstLayer> FirstLayer { get; set; }
         public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<MemberAccount> MemberAccount { get; set; }
@@ -56,5 +57,6 @@ namespace DeWay.Models
         public virtual DbSet<Specification> Specification { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
         public virtual DbSet<ThirdLayer> ThirdLayer { get; set; }
+        public virtual DbSet<WishList> WishList { get; set; }
     }
 }

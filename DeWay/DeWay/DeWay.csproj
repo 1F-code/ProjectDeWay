@@ -104,12 +104,13 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="images\beGood.jpg" />
     <Content Include="Models\shopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>shopDB.Context.cs</LastGenOutput>
       <DependentUpon>shopDB.edmx</DependentUpon>
+      <LastGenOutput>shopDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\shopDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -139,11 +140,24 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\shopDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>shopDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\shopDB.edmx.diagram">
+      <DependentUpon>shopDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -156,6 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,6 +185,9 @@
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart_OrderDetail.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FavoSeller.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FirstLayer.cs">
@@ -267,17 +286,13 @@
     <Compile Include="Models\ThirdLayer.cs">
       <DependentUpon>shopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WishList.cs">
+      <DependentUpon>shopDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\shopDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>shopDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\shopDB.edmx.diagram">
-      <DependentUpon>shopDB.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
@@ -290,6 +305,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Cart\myCart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -299,7 +320,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
