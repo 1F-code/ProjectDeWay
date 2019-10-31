@@ -105,6 +105,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\beGood.jpg" />
     <Content Include="Models\shopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>shopDB.Context.cs</LastGenOutput>
