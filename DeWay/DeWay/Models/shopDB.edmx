@@ -49,11 +49,11 @@
         </EntityType>
         <EntityType Name="FavoSeller">
           <Key>
-            <PropertyRef Name="selID" />
-            <PropertyRef Name="mbrID" />
+            <PropertyRef Name="favoID" />
           </Key>
           <Property Name="selID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="mbrID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="favoID" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="FirstLayer">
           <Key>
@@ -325,9 +325,9 @@
         </EntityType>
         <EntityType Name="WishList">
           <Key>
-            <PropertyRef Name="pdtID" />
-            <PropertyRef Name="mbrID" />
+            <PropertyRef Name="wishID" />
           </Key>
+          <Property Name="wishID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="pdtID" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="mbrID" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
@@ -1013,6 +1013,16 @@
           <NavigationProperty Name="Shipper" Relationship="Self.FK__Cart_Orde__shpID__0C85DE4D" FromRole="Cart_OrderDetail" ToRole="Shipper" />
           <NavigationProperty Name="Specification" Relationship="Self.FK__Cart_Orde__spcID__123EB7A3" FromRole="Cart_OrderDetail" ToRole="Specification" />
         </EntityType>
+        <EntityType Name="FavoSeller">
+          <Key>
+            <PropertyRef Name="favoID" />
+          </Key>
+          <Property Name="selID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="mbrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="favoID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK__FavoSelle__mbrID__6E01572D" FromRole="FavoSeller" ToRole="Member" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK__FavoSelle__selID__7C4F7684" FromRole="FavoSeller" ToRole="Seller" />
+        </EntityType>
         <EntityType Name="FirstLayer">
           <Key>
             <PropertyRef Name="fstLayerID" />
@@ -1036,14 +1046,14 @@
           <Property Name="signupDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="mbrImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cart_OrderDetail" Relationship="Self.FK__Cart_Orde__mbrID__14270015" FromRole="Member" ToRole="Cart_OrderDetail" />
+          <NavigationProperty Name="FavoSeller" Relationship="Self.FK__FavoSelle__mbrID__6E01572D" FromRole="Member" ToRole="FavoSeller" />
           <NavigationProperty Name="MemberAccount" Relationship="Self.FK__MemberAcc__mbrID__6A30C649" FromRole="Member" ToRole="MemberAccount" />
           <NavigationProperty Name="Message" Relationship="Self.FK__Message__receive__6D0D32F4" FromRole="Member" ToRole="Message" />
           <NavigationProperty Name="Message1" Relationship="Self.FK__Message__senderI__6C190EBB" FromRole="Member" ToRole="Message" />
           <NavigationProperty Name="ntfRecord" Relationship="Self.FK__ntfRecord__mbrID__71D1E811" FromRole="Member" ToRole="ntfRecord" />
           <NavigationProperty Name="Review" Relationship="Self.FK__Review__mbrID__6B24EA82" FromRole="Member" ToRole="Review" />
           <NavigationProperty Name="Seller" Relationship="Self.FK__Seller__mbrID__70DDC3D8" FromRole="Member" ToRole="Seller" />
-          <NavigationProperty Name="Seller1" Relationship="Self.FavoSeller" FromRole="Member" ToRole="Seller" />
-          <NavigationProperty Name="Product" Relationship="Self.WishList" FromRole="Member" ToRole="Product" />
+          <NavigationProperty Name="WishList" Relationship="Self.FK__WishList__mbrID__6EF57B66" FromRole="Member" ToRole="WishList" />
         </EntityType>
         <EntityType Name="MemberAccount">
           <Key>
@@ -1146,7 +1156,7 @@
           <NavigationProperty Name="ShipperDetail" Relationship="Self.FK__ShipperDe__pdtID__09A971A2" FromRole="Product" ToRole="ShipperDetail" />
           <NavigationProperty Name="Specification" Relationship="Self.FK__Specifica__pdtID__75A278F5" FromRole="Product" ToRole="Specification" />
           <NavigationProperty Name="Tag" Relationship="Self.FK__Tag__pdtID__76969D2E" FromRole="Product" ToRole="Tag" />
-          <NavigationProperty Name="Member" Relationship="Self.WishList" FromRole="Product" ToRole="Member" />
+          <NavigationProperty Name="WishList" Relationship="Self.FK__WishList__pdtID__74AE54BC" FromRole="Product" ToRole="WishList" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -1270,11 +1280,11 @@
           <Property Name="selInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="selAut" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="mbrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FavoSeller" Relationship="Self.FK__FavoSelle__selID__7C4F7684" FromRole="Seller" ToRole="FavoSeller" />
           <NavigationProperty Name="Member" Relationship="Self.FK__Seller__mbrID__70DDC3D8" FromRole="Seller" ToRole="Member" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Product__selID__7D439ABD" FromRole="Seller" ToRole="Product" />
           <NavigationProperty Name="SellerAut" Relationship="Self.FK__Seller__selAut__73BA3083" FromRole="Seller" ToRole="SellerAut" />
           <NavigationProperty Name="SellerPhone" Relationship="Self.FK__SellerPho__selID__7B5B524B" FromRole="Seller" ToRole="SellerPhone" />
-          <NavigationProperty Name="Member1" Relationship="Self.FavoSeller" FromRole="Seller" ToRole="Member" />
         </EntityType>
         <EntityType Name="SellerAut">
           <Key>
@@ -1342,6 +1352,16 @@
           <Property Name="trdLayerID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="trdLayer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK__ProductCa__trdLa__06CD04F7" FromRole="ThirdLayer" ToRole="ProductCategory" />
+        </EntityType>
+        <EntityType Name="WishList">
+          <Key>
+            <PropertyRef Name="wishID" />
+          </Key>
+          <Property Name="wishID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="pdtID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="mbrID" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="Self.FK__WishList__mbrID__6EF57B66" FromRole="WishList" ToRole="Member" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__WishList__pdtID__74AE54BC" FromRole="WishList" ToRole="Product" />
         </EntityType>
         <Association Name="FK__actBullet__admID__02084FDA">
           <End Role="Adm" Type="Self.Adm" Multiplicity="1" />
@@ -1412,6 +1432,30 @@
             </Principal>
             <Dependent Role="Cart_OrderDetail">
               <PropertyRef Name="spcID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FavoSelle__mbrID__6E01572D">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="FavoSeller" Type="Self.FavoSeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="mbrID" />
+            </Principal>
+            <Dependent Role="FavoSeller">
+              <PropertyRef Name="mbrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FavoSelle__selID__7C4F7684">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+          <End Role="FavoSeller" Type="Self.FavoSeller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="selID" />
+            </Principal>
+            <Dependent Role="FavoSeller">
+              <PropertyRef Name="selID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1495,6 +1539,18 @@
               <PropertyRef Name="mbrID" />
             </Principal>
             <Dependent Role="Seller">
+              <PropertyRef Name="mbrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WishList__mbrID__6EF57B66">
+          <End Role="Member" Type="Self.Member" Multiplicity="1" />
+          <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="mbrID" />
+            </Principal>
+            <Dependent Role="WishList">
               <PropertyRef Name="mbrID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1655,6 +1711,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__WishList__pdtID__74AE54BC">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="pdtID" />
+            </Principal>
+            <Dependent Role="WishList">
+              <PropertyRef Name="pdtID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ProductCa__sndLa__05D8E0BE">
           <End Role="SecondLayer" Type="Self.SecondLayer" Multiplicity="1" />
           <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
@@ -1739,19 +1807,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FavoSeller">
-          <End Role="Member" Type="Self.Member" Multiplicity="*" />
-          <End Role="Seller" Type="Self.Seller" Multiplicity="*" />
-        </Association>
-        <Association Name="WishList">
-          <End Role="Member" Type="Self.Member" Multiplicity="*" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="shopDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="shopDBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="actBulletin" EntityType="Self.actBulletin" />
           <EntitySet Name="Adm" EntityType="Self.Adm" />
           <EntitySet Name="AdmAccount" EntityType="Self.AdmAccount" />
           <EntitySet Name="Cart_OrderDetail" EntityType="Self.Cart_OrderDetail" />
+          <EntitySet Name="FavoSeller" EntityType="Self.FavoSeller" />
           <EntitySet Name="FirstLayer" EntityType="Self.FirstLayer" />
           <EntitySet Name="Member" EntityType="Self.Member" />
           <EntitySet Name="MemberAccount" EntityType="Self.MemberAccount" />
@@ -1779,6 +1840,7 @@
           <EntitySet Name="Specification" EntityType="Self.Specification" />
           <EntitySet Name="Tag" EntityType="Self.Tag" />
           <EntitySet Name="ThirdLayer" EntityType="Self.ThirdLayer" />
+          <EntitySet Name="WishList" EntityType="Self.WishList" />
           <AssociationSet Name="FK__actBullet__admID__02084FDA" Association="Self.FK__actBullet__admID__02084FDA">
             <End Role="Adm" EntitySet="Adm" />
             <End Role="actBulletin" EntitySet="actBulletin" />
@@ -1802,6 +1864,14 @@
           <AssociationSet Name="FK__Cart_Orde__spcID__123EB7A3" Association="Self.FK__Cart_Orde__spcID__123EB7A3">
             <End Role="Specification" EntitySet="Specification" />
             <End Role="Cart_OrderDetail" EntitySet="Cart_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FavoSelle__mbrID__6E01572D" Association="Self.FK__FavoSelle__mbrID__6E01572D">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="FavoSeller" EntitySet="FavoSeller" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FavoSelle__selID__7C4F7684" Association="Self.FK__FavoSelle__selID__7C4F7684">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="FavoSeller" EntitySet="FavoSeller" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductCa__fstLa__04E4BC85" Association="Self.FK__ProductCa__fstLa__04E4BC85">
             <End Role="FirstLayer" EntitySet="FirstLayer" />
@@ -1830,6 +1900,10 @@
           <AssociationSet Name="FK__Seller__mbrID__70DDC3D8" Association="Self.FK__Seller__mbrID__70DDC3D8">
             <End Role="Member" EntitySet="Member" />
             <End Role="Seller" EntitySet="Seller" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WishList__mbrID__6EF57B66" Association="Self.FK__WishList__mbrID__6EF57B66">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="WishList" EntitySet="WishList" />
           </AssociationSet>
           <AssociationSet Name="FK__ntfRecord__ntfCt__01142BA1" Association="Self.FK__ntfRecord__ntfCt__01142BA1">
             <End Role="ntfCategory" EntitySet="ntfCategory" />
@@ -1883,6 +1957,10 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="Tag" EntitySet="Tag" />
           </AssociationSet>
+          <AssociationSet Name="FK__WishList__pdtID__74AE54BC" Association="Self.FK__WishList__pdtID__74AE54BC">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="WishList" EntitySet="WishList" />
+          </AssociationSet>
           <AssociationSet Name="FK__ProductCa__sndLa__05D8E0BE" Association="Self.FK__ProductCa__sndLa__05D8E0BE">
             <End Role="SecondLayer" EntitySet="SecondLayer" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
@@ -1911,21 +1989,13 @@
             <End Role="Shipper" EntitySet="Shipper" />
             <End Role="ShipperDetail" EntitySet="ShipperDetail" />
           </AssociationSet>
-          <AssociationSet Name="FavoSeller" Association="Self.FavoSeller">
-            <End Role="Member" EntitySet="Member" />
-            <End Role="Seller" EntitySet="Seller" />
-          </AssociationSet>
-          <AssociationSet Name="WishList" Association="Self.WishList">
-            <End Role="Member" EntitySet="Member" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="shopDBModelStoreContainer" CdmEntityContainer="shopDBEntities">
+        <EntityContainerMapping StorageEntityContainer="shopDBModelStoreContainer" CdmEntityContainer="shopDBEntities1">
           <EntitySetMapping Name="actBulletin">
             <EntityTypeMapping TypeName="shopDBModel.actBulletin">
               <MappingFragment StoreEntitySet="actBulletin">
@@ -1969,6 +2039,15 @@
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="usedPoints" ColumnName="usedPoints" />
                 <ScalarProperty Name="shpID" ColumnName="shpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FavoSeller">
+            <EntityTypeMapping TypeName="shopDBModel.FavoSeller">
+              <MappingFragment StoreEntitySet="FavoSeller">
+                <ScalarProperty Name="selID" ColumnName="selID" />
+                <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+                <ScalarProperty Name="favoID" ColumnName="favoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2264,22 +2343,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FavoSeller" TypeName="shopDBModel.FavoSeller" StoreEntitySet="FavoSeller">
-            <EndProperty Name="Member">
-              <ScalarProperty Name="mbrID" ColumnName="mbrID" />
-            </EndProperty>
-            <EndProperty Name="Seller">
-              <ScalarProperty Name="selID" ColumnName="selID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="WishList" TypeName="shopDBModel.WishList" StoreEntitySet="WishList">
-            <EndProperty Name="Member">
-              <ScalarProperty Name="mbrID" ColumnName="mbrID" />
-            </EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="pdtID" ColumnName="pdtID" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="WishList">
+            <EntityTypeMapping TypeName="shopDBModel.WishList">
+              <MappingFragment StoreEntitySet="WishList">
+                <ScalarProperty Name="wishID" ColumnName="wishID" />
+                <ScalarProperty Name="pdtID" ColumnName="pdtID" />
+                <ScalarProperty Name="mbrID" ColumnName="mbrID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

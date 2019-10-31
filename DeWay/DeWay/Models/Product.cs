@@ -23,7 +23,7 @@ namespace DeWay.Models
             this.ShipperDetail = new HashSet<ShipperDetail>();
             this.Specification = new HashSet<Specification>();
             this.Tag = new HashSet<Tag>();
-            this.Member = new HashSet<Member>();
+            this.WishList = new HashSet<WishList>();
         }
     
         public string pdtID { get; set; }
@@ -49,6 +49,6 @@ namespace DeWay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Member> Member { get; set; }
+        public virtual ICollection<WishList> WishList { get; set; }
     }
 }

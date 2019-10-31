@@ -17,9 +17,9 @@ namespace DeWay.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Seller()
         {
+            this.FavoSeller = new HashSet<FavoSeller>();
             this.Product = new HashSet<Product>();
             this.SellerPhone = new HashSet<SellerPhone>();
-            this.Member1 = new HashSet<Member>();
         }
     
         public string selID { get; set; }
@@ -33,13 +33,13 @@ namespace DeWay.Models
         public string selAut { get; set; }
         public string mbrID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FavoSeller> FavoSeller { get; set; }
         public virtual Member Member { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
         public virtual SellerAut SellerAut { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SellerPhone> SellerPhone { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Member> Member1 { get; set; }
     }
 }
