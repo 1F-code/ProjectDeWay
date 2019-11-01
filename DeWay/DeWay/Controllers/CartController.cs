@@ -29,7 +29,5 @@ namespace Project.Controllers
             db.SaveChanges();
             return RedirectToAction("myCart", new { id = mbrID });
         }
-
-
     }
 }
